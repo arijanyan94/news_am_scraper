@@ -11,7 +11,8 @@ model = BartForConditionalGeneration.from_pretrained(model_name)
 tokenizer = BartTokenizer.from_pretrained(model_name)
 summarizer = pipeline("summarization", 
 						model=model, 
-						tokenizer=tokenizer)
+						tokenizer=tokenizer,
+						device=-1)
 
 @app.route('/')
 def index():
@@ -72,4 +73,4 @@ def summarize(text):
 	return text
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(host='0.0.0.0', port=5000, debug=True)

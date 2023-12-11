@@ -4,18 +4,28 @@ from bs4 import BeautifulSoup
 
 def get_article(url):
 
-	resp = requests.get(url)
+	resp = requests.get(url, timeout=10)
 	soup = BeautifulSoup(resp.content, 'html.parser')
+	if url.startswith("https://news.am"):
+		title = soup.find('div', class_='article-title').get_text()
+		article = soup.find('div', class_='article-text')
+		prefix = "https://news.am/"
 
-	title = soup.find('div', class_='article-title').get_text()
-	article = soup.find('div', class_='article-text')
+	elif url.startswith("https://tech.news"):
+		article = soup.find('div', id='opennewstext')
+		title = article.find('h1').get_text()
+		prefix = "https://tech.news/"
+
+	else:
+		title = soup.find('div', id='opennews').find('h1').get_text()
+		article = soup.find('div', id='opennewstext')
+		prefix = "https://med.news/" if url.startswith("https://med.news") else "https://sport.news/"
+
 	img_url = article.img['src']
-	# if the article doesn't have an image, the logo image is returned,
-	# and no need to run the face detection on it
 	if img_url=="https://news.am/css/images/desktop/logo.png":
 		img_source = (img_url, "logo")
 	else:
-		img_source = f"https://news.am/{img_url}"
+		img_source = f"{prefix}{img_url}"
 		img_source = (img_source, "face")
 
 	text_paragraphs = [p.get_text() for p in article.find_all('p')]
@@ -25,13 +35,14 @@ def get_article(url):
 
 def get_top_news_urls(url):
 
-	resp = requests.get(url)
+	resp = requests.get(url, timeout=10)
 	soup = BeautifulSoup(resp.content, 'html.parser')
 	shorts = soup.find('div', class_='news-list short-top')
 	links = shorts.find_all('a')
 	# Extract the 'href tag from the list of "Top News"
-	urls = [f"https://news.am{link['href']}" for link in links]
-
+	urls = [f"https://news.am{link['href']}" if not link['href'].startswith('http')
+												else link['href'] for link in links]
+ 
 	return urls
 
 def scrape_news():

@@ -6,11 +6,22 @@ import numpy as np
 from io import BytesIO
 
 def detect_faces(image_url, is_face):
+    """
+    Function to convert image source url to base64 image with
+    face detected on it or without, depending on second argument
+
+
+    Args:
+        image_url: image source url.
+        is_face: bolean, whether to find face or no.
+
+    Returns:
+        Returns base64 image string.
+    """
 
     response = requests.get(image_url)
     image_bytes = BytesIO(response.content)
 
-    # Decode the image using OpenCV
     arr = np.asarray(bytearray(image_bytes.read()), dtype=np.uint8)
 
     # Decode the image using OpenCV
@@ -22,11 +33,7 @@ def detect_faces(image_url, is_face):
 
         # Convert the image to grayscale (dlib works on grayscale images)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-        # Detect faces in the grayscale image
         faces = detector(gray, 1)
-
-        # Loop through each face and draw a rectangle around it
         for face in faces:
             x, y, w, h = face.left(), face.top(), face.width(), face.height()
             cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)  # Draw rectangle around the face
