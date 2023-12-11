@@ -14,12 +14,12 @@ def get_article(url):
 	elif url.startswith("https://tech.news"):
 		article = soup.find('div', id='opennewstext')
 		title = article.find('h1').get_text()
-		prefix = "https://tech.news/"
+		prefix = "https://tech.news.am"
 
 	else:
 		title = soup.find('div', id='opennews').find('h1').get_text()
 		article = soup.find('div', id='opennewstext')
-		prefix = "https://med.news/" if url.startswith("https://med.news") else "https://sport.news/"
+		prefix = "https://med.news.am" if url.startswith("https://med.news") else "https://sport.news.am"
 
 	img_url = article.img['src']
 	if img_url=="https://news.am/css/images/desktop/logo.png":
@@ -30,7 +30,7 @@ def get_article(url):
 
 	text_paragraphs = [p.get_text() for p in article.find_all('p')]
 	text = " ".join(text_paragraphs)
-
+	print(img_source)
 	return [img_source, url, title, text]
 
 def get_top_news_urls(url):
@@ -58,3 +58,5 @@ def scrape_news():
 	print("finished scraping")
 
 	return results
+
+print(scrape_news())
