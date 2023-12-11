@@ -1,21 +1,6 @@
 import requests
-import pandas as pd
 import concurrent.futures
 from bs4 import BeautifulSoup
-# from transformers import pipeline, BartForConditionalGeneration, BartTokenizer
-# import torch
-# # torch.cuda.empty_cache()
-# # torch.cuda.set_per_process_memory_fraction(0.6)  # Set to a fraction of the total memory (e.g., 0.8)
-# # torch.backends.cuda.max_split_size_mb = 10  # Set to an appropriate value
-
-# # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# model_name = "facebook/bart-large-cnn"
-# model = BartForConditionalGeneration.from_pretrained(model_name)
-# tokenizer = BartTokenizer.from_pretrained(model_name)
-# summarizer = pipeline("summarization", 
-# 						model=model, 
-# 						tokenizer=tokenizer)
 
 def get_article(url):
 

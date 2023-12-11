@@ -1,8 +1,8 @@
 requests
 transformers
 dlib
-cv2
 opencv-python
 flask
 numpy
 bs4
+torch==1.9.0+cpu
