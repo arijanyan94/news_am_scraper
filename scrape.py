@@ -58,5 +58,3 @@ def scrape_news():
 	print("finished scraping")
 
 	return results
-
-print(scrape_news())
