@@ -1,0 +1,8 @@
+requests
+transformers
+dlib
+cv2
+opencv-python
+flask
+numpy
+bs4
