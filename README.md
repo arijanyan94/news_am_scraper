@@ -23,7 +23,7 @@ The **dlib** package may take a couple of minutes to build, kindly wait.
 ## Usage
 After the installations you can run the following command to start the webapp
 
-	python app.py
+		python app.py
 
 To stop the application, termiante the program with **CTRL + C**
 During the first run of the LLM model will be downloaded (~ 1.6Gb) and then the app will be rendered on your localhost 5000 port.
@@ -37,4 +37,5 @@ Optimization
 
 ## Citation
 Author - Arsen Arijanyan
+
 Email  - arsen.aridjanyan@gmail.com
