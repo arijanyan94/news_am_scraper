@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News.am Scraper and analyzer</title>
+    <title>News.am Scraper and Analyzer</title>
     <style>
-        /* Example styles for article blocks */
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        #btnLoad {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
         .article {
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -16,7 +28,7 @@
             height: auto;
             margin-bottom: 10px;
             border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
         .article h2 {
             font-size: 20px;
@@ -34,7 +46,8 @@
 </head>
 <body>
     <div id="app">
-        <h1>News.am Scraper and analyzer</h1>
+        <h1>News.am Scraper and Analyzer</h1>
+        <img src="https://news.am/css/images/desktop/logo.png" alt="News.am Image">
         <button id="btnLoad" onclick="scrapArticles()">Load Articles</button>
         <div id="articles"></div>
         <div id="loader" style="display: none;">Loading...</div>
@@ -52,7 +65,7 @@
                     if (xhr.status === 200) {
                         document.getElementById('articles').innerHTML = xhr.responseText;
                         processImages(0, btn); // Process images after loading articles                        
-                        loadSummaries(0, btn); // Pass the button element to enable it after processing
+                        loadSummaries(0, btn); // Summarize text after loading articles
                     } else {
                         console.error('Error:', xhr.status);
                         btn.disabled = false; // Enable the button on error
