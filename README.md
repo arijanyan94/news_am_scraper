@@ -5,7 +5,7 @@ A Single page web application, which scraps the data from [News.am](https://news
 on the cover images, and summarizes the text article. The webpage uses lazy loading technique, so when the button is clicked,
 the scraping is done first and rendered immediately to the page, afterwards the images are processes and rendered one by one,
 and finaly the text summarization is done one by one as well. The purpose is that the user won't wait to long for the loading.
-You can take a look at the webpage [here](http://54.153.75.61:5000/).
+You can take a look at the webpage [here](http://54.215.166.137:5000/).
 
 ## Deployment
 For the server is used this one: "Deep Learning OSS Nvidia Driver AMI GPU PyTorch 2.1.0 (Ubuntu 20.04)", with 2 CPUs and a GPU.
